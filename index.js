@@ -58,14 +58,19 @@ function navBar() {
 	}
 
 	window.addEventListener('hashchange', updateSelected)
-	updateSelected()
 
+	updateSelected()
 	root.classList.add('navbar')
 
 	return root
 }
 
 function route() {
+	let routes = [
+		{ hash: "#/", rootNode: helloWorld() },
+		{ hash: "#/teste", rootNode: text('Jesus Cristo...') },
+	]
+
 	let root = document.createElement('div')
 	root.classList.add('content')
 
@@ -73,13 +78,10 @@ function route() {
 		let hash = window.location.hash || '#/'
 
 		root.innerHTML = ''
-		if(hash === '#/') {
-			root.appendChild(helloWorld())
-		}
-
-		if(hash === '#/teste') {
-			root.appendChild(text('Jesus Cristo...'))
-		}
+		routes.forEach((r) => {
+			if(r.hash === hash)
+				root.appendChild(r.rootNode)
+		})
 	}
 	
 	window.addEventListener('hashchange', loadPage)
