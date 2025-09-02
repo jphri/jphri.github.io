@@ -8,24 +8,6 @@ function title() {
 	return root
 }
 
-function surpriseButton() {
-	let root = document.createElement('div')
-	let button = document.createElement('button')
-
-	button.textContent = 'Clica aqui'
-	button.addEventListener('click', function() {
-		root.innerHTML = ''
-
-		let t = document.createElement('p')
-		t.textContent = 'SCADUSH!'
-
-		root.appendChild(t)
-	})
-	root.appendChild(button)
-
-	return root
-}
-
 function helloWorld() {
 	let t = document.createElement('p')
 	t.textContent = 'Está meio vazio por aqui...'
@@ -33,12 +15,40 @@ function helloWorld() {
 	return t
 }
 
+function text(txt) {
+	let t = document.createElement('p')
+	t.textContent = txt
+	return t
+}
+
+function route() {
+	let root = document.createElement('div')
+
+	const loadPage = () => {
+		let hash = window.location.hash || '#/'
+
+		root.innerHTML = ''
+		if(hash === '#/') {
+			root.appendChild(title())
+			root.appendChild(helloWorld())
+		}
+
+		if(hash === '#/teste') {
+			root.appendChild(title())
+			root.appendChild(text('Jesus Cristo...'))
+		}
+	}
+	
+	window.addEventListener('hashchange', loadPage)
+	window.addEventListener('load', loadPage)
+
+	return root
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 	let rootContainer = document.getElementById("root")
 	rootContainer.classList.add('content')
 
-	rootContainer.appendChild(title())
-	rootContainer.appendChild(helloWorld())
-	rootContainer.appendChild(surpriseButton())
+	rootContainer.appendChild(route())
 })
 
