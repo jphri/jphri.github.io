@@ -30,6 +30,7 @@ function navBar() {
 	let root = document.createElement('div')
 	let list = document.createElement('ul')
 
+	root.appendChild(title())
 	root.appendChild(list)
 
 	for(i in linkList) {
@@ -56,12 +57,10 @@ function route() {
 
 		root.innerHTML = ''
 		if(hash === '#/') {
-			root.appendChild(title())
 			root.appendChild(helloWorld())
 		}
 
 		if(hash === '#/teste') {
-			root.appendChild(title())
 			root.appendChild(text('Jesus Cristo...'))
 		}
 	}
