@@ -1,9 +1,17 @@
 body {
 	background-color: #000;
 	color: #aaa;
+    width: 50%;
+    margin: auto;
+    display: flex;
+}
+
+.navbar {
+	flex-grow: 1;
+	max-width: 150px;
 }
 
 .content {
-	margin: auto;
-	width: 50%;
+	margin: 1em;
+	flex-grow: 2;
 }

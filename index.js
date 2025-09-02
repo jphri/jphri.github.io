@@ -21,8 +21,35 @@ function text(txt) {
 	return t
 }
 
+function navBar() {
+	const linkList = [
+		{ name: 'Home', link: '#/' },
+		{ name: 'Teste', link: '#/teste' },
+	]
+
+	let root = document.createElement('div')
+	let list = document.createElement('ul')
+
+	root.appendChild(list)
+
+	for(i in linkList) {
+		let anchor = document.createElement('a')
+		anchor.textContent = linkList[i].name
+		anchor.href = linkList[i].link
+
+		let listItem = document.createElement('li')
+		listItem.appendChild(anchor)
+
+		list.appendChild(listItem)
+	}
+	root.classList.add('navbar')
+
+	return root
+}
+
 function route() {
 	let root = document.createElement('div')
+	root.classList.add('content')
 
 	const loadPage = () => {
 		let hash = window.location.hash || '#/'
@@ -47,8 +74,8 @@ function route() {
 
 document.addEventListener('DOMContentLoaded', () => {
 	let rootContainer = document.getElementById("root")
-	rootContainer.classList.add('content')
 
+	rootContainer.appendChild(navBar())
 	rootContainer.appendChild(route())
 })
 
