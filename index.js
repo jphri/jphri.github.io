@@ -30,6 +30,19 @@ function navBar() {
 	let root = document.createElement('div')
 	let list = document.createElement('ul')
 
+	let updateSelected = () => {
+		const hash = window.location.hash || '#/';
+		
+		list.childNodes.forEach((item) => {
+			let anchor = item.childNodes[0]
+
+			anchor.classList.remove('selected')
+			if(anchor.hash === hash) {
+				anchor.classList.add('selected')
+			}
+		})
+	}
+
 	root.appendChild(title())
 	root.appendChild(list)
 
@@ -43,6 +56,10 @@ function navBar() {
 
 		list.appendChild(listItem)
 	}
+
+	window.addEventListener('hashchange', updateSelected)
+	updateSelected()
+
 	root.classList.add('navbar')
 
 	return root

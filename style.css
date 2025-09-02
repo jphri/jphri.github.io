@@ -6,9 +6,30 @@ body {
     display: flex;
 }
 
+a {
+	color: #0AA;
+	text-decoration: none;
+}
+
+a.selected {
+	text-decoration: underline;
+}
+
+a:hover {
+	color: #AFF;
+}
+
 .navbar {
 	flex-grow: 1;
 	max-width: 150px;
+
+	ul li::marker {
+		content: '* ';
+	}
+
+	ul li::marker {
+		content: '* ';
+	}
 }
 
 .content {
