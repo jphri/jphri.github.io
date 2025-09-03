@@ -81,8 +81,10 @@ function route() {
 
 		root.innerHTML = ''
 		routes.forEach((r) => {
-			if(r.hash === hash)
+			if(r.hash === hash) {
 				root.appendChild(r.rootNode)
+				r.rootNode.dispatchEvent(new CustomEvent('routerSelect'))
+			}
 		})
 	}
 	
