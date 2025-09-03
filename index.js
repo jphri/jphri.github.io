@@ -25,6 +25,7 @@ function navBar() {
 	const linkList = [
 		{ name: 'Home', link: '#/' },
 		{ name: 'Teste', link: '#/teste' },
+		{ name: 'Blog Test', link: '#/teste/blog' },
 	]
 
 	let root = document.createElement('div')
@@ -69,6 +70,7 @@ function route() {
 	let routes = [
 		{ hash: "#/", rootNode: helloWorld() },
 		{ hash: "#/teste", rootNode: text('Jesus Cristo...') },
+		{ hash: "#/teste/blog", rootNode: blogPost('/blog_teste.md') },
 	]
 
 	let root = document.createElement('div')
