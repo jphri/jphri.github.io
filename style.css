@@ -1,9 +1,38 @@
 body {
 	background-color: #000;
 	color: #aaa;
+    width: 50%;
+    margin: auto;
+    display: flex;
+}
+
+a {
+	color: #0AA;
+	text-decoration: none;
+}
+
+a.selected {
+	text-decoration: underline;
+}
+
+a:hover {
+	color: #AFF;
+}
+
+.navbar {
+	flex-grow: 1;
+	max-width: 150px;
+
+	ul li::marker {
+		content: '* ';
+	}
+
+	ul li::marker {
+		content: '* ';
+	}
 }
 
 .content {
-	margin: auto;
-	width: 50%;
+	margin: 1em;
+	flex-grow: 2;
 }
