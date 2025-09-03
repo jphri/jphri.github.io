@@ -1,4 +1,6 @@
-function blogPost(postPath) {
+const { marked } = require('marked')
+
+module.exports.blogPost = (postPath) => {
 	let root = document.createElement('div')
 	
 	root.addEventListener('routerSelect', () => {
