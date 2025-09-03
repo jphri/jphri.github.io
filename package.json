@@ -1,0 +1,21 @@
+{
+  "name": "jphri.github.io",
+  "version": "1.0.0",
+  "description": "Yay",
+  "main": "index.js",
+  "scripts": {
+	  "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@jphri.github.com:jphri/jphri.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "webpack": "^5.101.3",
+    "webpack-cli": "^6.0.1"
+  }
+}

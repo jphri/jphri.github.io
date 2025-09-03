@@ -1,4 +1,4 @@
-function blogPost(postPath) {
+module.exports.blogPost = (postPath) => {
 	let root = document.createElement('div')
 	
 	root.addEventListener('routerSelect', () => {

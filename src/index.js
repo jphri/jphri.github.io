@@ -1,3 +1,5 @@
+const { blogPost } = require('./blog')
+
 function title() {
 	let root = document.createElement('div')
 	let t = document.createElement('h1')
