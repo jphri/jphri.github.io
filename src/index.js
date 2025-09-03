@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	rootContainer.appendChild(router([
 		{ hash: "#/", rootNode: helloWorld() },
-		{ hash: "#/blog/test", rootNode: blogPost('/blog_teste.md') },
+		{ hash: "#/blog/test", rootNode: blogPost('/blog/blog_teste.md') },
 	]))
 })
 
