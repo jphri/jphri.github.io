@@ -21,45 +21,79 @@ function text(txt) {
 	return t
 }
 
+function navGroup(name, elementList) {
+	let root = document.createElement('span')
+	let list = document.createElement('ul')
+
+	let anchor = document.createElement('a')
+	anchor.textContent = name + '/'
+	
+	let state = false
+	let updateShowList = () => {
+		if(!state) {
+			list.remove()
+		} else {
+			root.appendChild(list)
+		}
+	}
+
+	anchor.addEventListener('click', () => {
+		state = !state
+		updateShowList()
+	})
+	root.appendChild(anchor)
+
+	for(i in elementList) {
+		let listItem = document.createElement('li')
+		listItem.appendChild(elementList[i])
+		list.appendChild(listItem)
+	}
+
+	return root
+}
+
+function navLink(name, href) {
+	let anchor = document.createElement('a')
+
+	let updateSelected = () => {
+		const hash = window.location.hash || '#/';
+		anchor.classList.remove('selected')
+		if(anchor.hash === hash) {
+			anchor.classList.add('selected')
+		}
+	}
+
+	window.addEventListener('hashchange', updateSelected)
+
+	anchor.textContent = name
+	anchor.href = href
+
+	updateSelected()
+
+	return anchor
+}
+
 function navBar() {
 	const linkList = [
-		{ name: 'Home', link: '#/' },
-		{ name: 'Teste', link: '#/teste' },
+		navLink('Home', '#/'),
+		navLink('Teste', '#/teste'),
+		navGroup('Blog', [
+			navLink('Teste', '#/teste/blog')
+		])
 	]
 
 	let root = document.createElement('div')
 	let list = document.createElement('ul')
 
-	let updateSelected = () => {
-		const hash = window.location.hash || '#/';
-		
-		list.childNodes.forEach((item) => {
-			let anchor = item.childNodes[0]
-
-			anchor.classList.remove('selected')
-			if(anchor.hash === hash) {
-				anchor.classList.add('selected')
-			}
-		})
-	}
-
 	root.appendChild(title())
 	root.appendChild(list)
 
 	for(i in linkList) {
-		let anchor = document.createElement('a')
-		anchor.textContent = linkList[i].name
-		anchor.href = linkList[i].link
-
 		let listItem = document.createElement('li')
-		listItem.appendChild(anchor)
-
+		listItem.appendChild(linkList[i])
 		list.appendChild(listItem)
 	}
 
-	window.addEventListener('hashchange', updateSelected)
-
-	updateSelected()
 	root.classList.add('navbar')
 
 	return root
@@ -69,6 +103,7 @@ function route() {
 	let routes = [
 		{ hash: "#/", rootNode: helloWorld() },
 		{ hash: "#/teste", rootNode: text('Jesus Cristo...') },
+		{ hash: "#/teste/blog", rootNode: blogPost('/blog_teste.md') },
 	]
 
 	let root = document.createElement('div')
@@ -79,8 +114,10 @@ function route() {
 
 		root.innerHTML = ''
 		routes.forEach((r) => {
-			if(r.hash === hash)
+			if(r.hash === hash) {
 				root.appendChild(r.rootNode)
+				r.rootNode.dispatchEvent(new CustomEvent('routerSelect'))
+			}
 		})
 	}
 	
