@@ -4,7 +4,7 @@
   "description": "Yay",
   "main": "index.js",
   "scripts": {
-	  "build": "webpack"
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -17,5 +17,8 @@
   "devDependencies": {
     "webpack": "^5.101.3",
     "webpack-cli": "^6.0.1"
+  },
+  "dependencies": {
+    "marked": "^16.2.1"
   }
 }

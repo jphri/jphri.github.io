@@ -1,3 +1,5 @@
+const { marked } = require('marked')
+
 module.exports.blogPost = (postPath) => {
 	let root = document.createElement('div')
 	
