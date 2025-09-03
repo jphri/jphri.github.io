@@ -21,6 +21,37 @@ function text(txt) {
 	return t
 }
 
+function navGroup(name, elementList) {
+	let root = document.createElement('span')
+	let list = document.createElement('ul')
+
+	let anchor = document.createElement('a')
+	anchor.textContent = name + '/'
+	
+	let state = false
+	let updateShowList = () => {
+		if(!state) {
+			list.remove()
+		} else {
+			root.appendChild(list)
+		}
+	}
+
+	anchor.addEventListener('click', () => {
+		state = !state
+		updateShowList()
+	})
+	root.appendChild(anchor)
+
+	for(i in elementList) {
+		let listItem = document.createElement('li')
+		listItem.appendChild(elementList[i])
+		list.appendChild(listItem)
+	}
+
+	return root
+}
+
 function navLink(name, href) {
 	let anchor = document.createElement('a')
 
@@ -46,7 +77,9 @@ function navBar() {
 	const linkList = [
 		navLink('Home', '#/'),
 		navLink('Teste', '#/teste'),
-		navLink('Blog Test', '#/teste/blog'),
+		navGroup('Blog', [
+			navLink('Teste', '#/teste/blog')
+		])
 	]
 
 	let root = document.createElement('div')
