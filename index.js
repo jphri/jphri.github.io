@@ -21,46 +21,46 @@ function text(txt) {
 	return t
 }
 
+function navLink(name, href) {
+	let anchor = document.createElement('a')
+
+	let updateSelected = () => {
+		const hash = window.location.hash || '#/';
+		anchor.classList.remove('selected')
+		if(anchor.hash === hash) {
+			anchor.classList.add('selected')
+		}
+	}
+
+	window.addEventListener('hashchange', updateSelected)
+
+	anchor.textContent = name
+	anchor.href = href
+
+	updateSelected()
+
+	return anchor
+}
+
 function navBar() {
 	const linkList = [
-		{ name: 'Home', link: '#/' },
-		{ name: 'Teste', link: '#/teste' },
-		{ name: 'Blog Test', link: '#/teste/blog' },
+		navLink('Home', '#/'),
+		navLink('Teste', '#/teste'),
+		navLink('Blog Test', '#/teste/blog'),
 	]
 
 	let root = document.createElement('div')
 	let list = document.createElement('ul')
 
-	let updateSelected = () => {
-		const hash = window.location.hash || '#/';
-		
-		list.childNodes.forEach((item) => {
-			let anchor = item.childNodes[0]
-
-			anchor.classList.remove('selected')
-			if(anchor.hash === hash) {
-				anchor.classList.add('selected')
-			}
-		})
-	}
-
 	root.appendChild(title())
 	root.appendChild(list)
 
 	for(i in linkList) {
-		let anchor = document.createElement('a')
-		anchor.textContent = linkList[i].name
-		anchor.href = linkList[i].link
-
 		let listItem = document.createElement('li')
-		listItem.appendChild(anchor)
-
+		listItem.appendChild(linkList[i])
 		list.appendChild(listItem)
 	}
 
-	window.addEventListener('hashchange', updateSelected)
-
-	updateSelected()
 	root.classList.add('navbar')
 
 	return root
